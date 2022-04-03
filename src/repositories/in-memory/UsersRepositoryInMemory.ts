@@ -1,29 +1,29 @@
-import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
-import { User } from "../../model/User";
-import { IUsersRepository } from "../IUsersRepository";
+import { ICreateUserDTO } from "../../dtos/ICreateUserDTO"
+import { User } from "../../model/User"
+import { IUsersRepository } from "../IUsersRepository"
 
 class UsersRepositoryInMemory implements IUsersRepository {
-  users: User[] = [];
+  users: User[] = []
 
   create({ name, email, password }: ICreateUserDTO): void {
-    const user = new User();
-    Object.assign(user, { name, email, password });
+    const user = new User()
+    Object.assign(user, { name, email, password })
 
-    this.users.push(user);
+    this.users.push(user)
   }
   findByEmail(email: string): User {
-    const user = this.users.find((user) => user.email === email);
+    const user = this.users.find(user => user.email === email)
 
-    return user;
+    return user
   }
   findById(id: string): User {
-    const user = this.users.find((user) => user.id === id);
+    const user = this.users.find(user => user.id === id)
 
-    return user;
+    return user
   }
   listAll(): User[] {
-    return this.users;
+    return this.users
   }
 }
 
-export { UsersRepositoryInMemory };
+export { UsersRepositoryInMemory }
