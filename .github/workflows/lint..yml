@@ -27,4 +27,4 @@ jobs:
         run: yarn
 
       - name: Run ESLint
-        run: yarn lint
+        run: yarn lint:fix
