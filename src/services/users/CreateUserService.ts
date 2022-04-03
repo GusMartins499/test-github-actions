@@ -13,11 +13,11 @@ class CreateUserService {
   constructor(private usersRepository: IUsersRepository) {}
 
   async execute({ name, email, password }: IRequest): Promise<void> {
-    const userAlreadyExists = this.usersRepository.findByEmail(email)
+    /*     const userAlreadyExists = this.usersRepository.findByEmail(email);
 
     if (userAlreadyExists) {
-      throw new AppError("User already exists")
-    }
+      throw new AppError("User already exists");
+    } */
 
     const passwordHash = await hash(password, 8)
 
