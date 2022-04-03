@@ -20,6 +20,10 @@ class UsersRepositoryInMemory implements IUsersRepository {
 
     return updatedUser
   }
+  delete(id: string): void {
+    const userIndex = this.users.findIndex(user => user.id === id)
+    this.users.splice(1, userIndex)
+  }
   findByEmail(email: string): User {
     const user = this.users.find(user => user.email === email)
 

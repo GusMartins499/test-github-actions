@@ -2,6 +2,7 @@ import { Router } from "express"
 
 import { UsersRepositoryInMemory } from "../repositories/in-memory/UsersRepositoryInMemory"
 import { CreateUserService } from "../services/users/CreateUserService"
+import { DeleteUserService } from "../services/users/DeleteUserService"
 import { ListUsersService } from "../services/users/ListUsersService"
 import { UpdateUserService } from "../services/users/UpdateUserService"
 
@@ -36,6 +37,16 @@ usersRoutes.put("/:id", (request, response) => {
   const userUpdated = updateUserService.execute({ id, name, email })
 
   return response.json(userUpdated)
+})
+
+usersRoutes.delete("/:id", (request, response) => {
+  const { id } = request.params
+
+  const deleteUserService = new DeleteUserService(usersRepository)
+
+  deleteUserService.execute({ id })
+
+  return response.status(200).send()
 })
 
 export { usersRoutes }
