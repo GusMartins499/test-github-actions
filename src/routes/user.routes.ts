@@ -3,6 +3,7 @@ import { Router } from "express"
 import { UsersRepositoryInMemory } from "../repositories/in-memory/UsersRepositoryInMemory"
 import { CreateUserService } from "../services/users/CreateUserService"
 import { ListUsersService } from "../services/users/ListUsersService"
+import { UpdateUserService } from "../services/users/UpdateUserService"
 
 const usersRoutes = Router()
 
@@ -24,6 +25,17 @@ usersRoutes.get("/", (request, response) => {
   const users = listUsersService.execute()
 
   return response.json(users)
+})
+
+usersRoutes.put("/:id", (request, response) => {
+  const { id } = request.params
+  const { name, email } = request.body
+
+  const updateUserService = new UpdateUserService(usersRepository)
+
+  const userUpdated = updateUserService.execute({ id, name, email })
+
+  return response.json(userUpdated)
 })
 
 export { usersRoutes }

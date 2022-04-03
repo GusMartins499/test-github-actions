@@ -5,4 +5,10 @@ interface ICreateUserDTO {
   password: string
 }
 
-export { ICreateUserDTO }
+interface IUpdateUserDTO {
+  id: string
+  name: string
+  email: string
+}
+
+export { ICreateUserDTO, IUpdateUserDTO }
