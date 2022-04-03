@@ -23,7 +23,7 @@ jobs:
           node-version: 16.x
 
       - name: Install dependencies
-        uses: bahmutov/npm-install@v3
+        uses: yarn
 
       - name: Run ESLint
         run: yarn lint
